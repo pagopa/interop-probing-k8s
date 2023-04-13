@@ -1,5 +1,0 @@
-{
-    "yaml.schemas": {
-        "https://raw.githubusercontent.com/deployphp/deployer/master/src/schema.json": "file:///c%3A/Users/AlessioCreo/Desktop/PROJECTS/PAGOPA/eservice/interop-probing-k8s/.github/workflows/deploy.yaml"
-    }
-}
