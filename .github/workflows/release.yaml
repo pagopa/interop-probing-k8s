@@ -1,0 +1,20 @@
+name: "Release on EKS"
+
+on:
+  push:
+    branches:
+      - 'main'     
+    paths:
+      - '**'
+
+permissions:
+  id-token: write   
+  contents: read    
+
+jobs:
+  kubernetes:
+    name: "kustomize"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
