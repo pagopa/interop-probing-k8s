@@ -1,22 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: dev
-  name: interop-be-probing-api
+  name: placeholder
   annotations:
     alb.ingress.kubernetes.io/scheme: internal
     alb.ingress.kubernetes.io/group.name: interop-probing-alb
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/load-balancer-name: interop-probing-alb-dev
-spec:
-  ingressClassName: alb
-  rules:
-  - http:
-      paths:
-      - path: /eservices
-        pathType: Prefix
-        backend:
-          service:
-            name: interop-be-probing-api
-            port:
-               number: 80
+  spec:

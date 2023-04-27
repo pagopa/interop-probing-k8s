@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  API_OPERATIONS_BASEURL: interop-be-probing-eservice-operations.dev.svc.cluster.local/
+  API_ESERVICE_BASEPATH: eservices
+  API_PRODUCER_BASEPATH: producers
+kind: ConfigMap
+metadata:
+  name: interop-be-probing-common
