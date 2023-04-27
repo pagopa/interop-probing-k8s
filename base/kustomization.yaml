@@ -5,3 +5,4 @@ resources:
 - ingress.yaml
 - configMap.yaml
 - svc.yaml
+- common.yaml
