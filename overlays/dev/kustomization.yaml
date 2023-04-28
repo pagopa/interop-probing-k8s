@@ -3,3 +3,8 @@ kind: Kustomization
 namespace: dev
 resources:
 - ./interop-be-probing-api
+- ./interop-be-probing-caller
+- ./interop-be-probing-eservice-operations
+- ./interop-be-probing-eservice-registry-reader
+- ./interop-be-probing-eservice-registry-updater
+- ./interop-be-probing-scheduler

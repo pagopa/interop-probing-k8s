@@ -1,0 +1,141 @@
+apiVersion: v1
+data:
+  DATABASE: POSTGRESQL
+  DATABASE_DRIVER: org.postgresql.Driver
+  DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQL95Dialect
+  DATABASE_URL: jdbc:postgresql://interop-probing-operational-database-dev.cluster-caudw4yuwazj.eu-central-1.rds.amazonaws.com:5432/interop_probing_operational?currentSchema=interop_probing_operational
+  JDBC_TIME_ZONE: UTC
+  SCHEMA_NAME: interop_probing_operational
+  VALIDATE_MIGRATION_NAMING: "true"
+kind: ConfigMap
+metadata:
+  annotations:
+    reloader.stakater.com/match: "true"
+  name: interop-be-probing-eservice-operations
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: interop-be-probing-eservice-operations
+  name: interop-be-probing-eservice-operations
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: interop-be-probing-eservice-operations
+  type: NodePort
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/search: "true"
+  labels:
+    app: interop-be-probing-eservice-operations
+  name: interop-be-probing-eservice-operations
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interop-be-probing-eservice-operations
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: interop-be-probing-eservice-operations
+    spec:
+      containers:
+      - env:
+        - name: API_ESERVICE_BASEPATH
+          valueFrom:
+            configMapKeyRef:
+              key: API_ESERVICE_BASEPATH
+              name: interop-be-probing-common
+        - name: API_PRODUCER_BASEPATH
+          valueFrom:
+            configMapKeyRef:
+              key: API_PRODUCER_BASEPATH
+              name: interop-be-probing-common
+        - name: API_OPERATIONS_BASEURL
+          valueFrom:
+            configMapKeyRef:
+              key: API_OPERATIONS_BASEURL
+              name: interop-be-probing-common
+        - name: VALIDATE_MIGRATION_NAMING
+          valueFrom:
+            configMapKeyRef:
+              key: VALIDATE_MIGRATION_NAMING
+              name: interop-be-probing-eservice-operations
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_URL
+              name: interop-be-probing-eservice-operations
+        - name: DATABASE_DRIVER
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_DRIVER
+              name: interop-be-probing-eservice-operations
+        - name: DATABASE_PLATFORM
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PLATFORM
+              name: interop-be-probing-eservice-operations
+        - name: DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE
+              name: interop-be-probing-eservice-operations
+        - name: JDBC_TIME_ZONE
+          valueFrom:
+            configMapKeyRef:
+              key: JDBC_TIME_ZONE
+              name: interop-be-probing-eservice-operations
+        - name: SCHEMA_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: SCHEMA_NAME
+              name: interop-be-probing-eservice-operations
+        - name: FLYWAY_DATABASE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: FLYWAY_DATABASE_USERNAME
+              name: interop-be-probing-aurora-flyway-user-credentials
+        - name: FLYWAY_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: FLYWAY_DATABASE_PASSWORD
+              name: interop-be-probing-aurora-flyway-user-credentials
+        - name: DATABASE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: DATABASE_USERNAME
+              name: interop-be-probing-api-aurora-user-credentials
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: DATABASE_PASSWORD
+              name: interop-be-probing-api-aurora-user-credentials
+        image: ghcr.io/pagopa/interop-be-probing-eservice-operations:develop
+        name: interop-be-probing-eservice-operations
+        ports:
+        - containerPort: 8080
+          name: http
+        resources: {}
+status: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/group.name: interop-probing-alb
+    alb.ingress.kubernetes.io/load-balancer-name: interop-probing-alb-dev
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/target-type: ip
+  name: placeholder
+  spec: null
