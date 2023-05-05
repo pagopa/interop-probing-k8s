@@ -1,18 +1,26 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+- ../../../base/deployment
 - ../../../base/configMap
-- ../../../base/cronJob
+- ../../../base/svc
 patches:
+  - path: deployment.yaml
+    target:
+      kind: Deployment
+    options:
+      allowNameChange: true
+      allowKindChange: true
   - path: configMap.yaml
     target:
       kind: ConfigMap
     options:
       allowNameChange: true
       allowKindChange: true
-  - path: cronJob.yaml
+  - path: svc.yaml
     target:
-      kind: CronJob
+      kind: Service
     options:
       allowNameChange: true
       allowKindChange: true
+

@@ -1,17 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../../base
+- ../../../base/deployment
+- ../../../base/configMap
+- ../../../base/svc
+- ../../../base/ingress
 patches:
   - path: deployment.yaml
     target:
       kind: Deployment
-    options:
-      allowNameChange: true
-      allowKindChange: true
-  - path: ingress.yaml
-    target:
-      kind: Ingress
     options:
       allowNameChange: true
       allowKindChange: true
@@ -27,4 +24,11 @@ patches:
     options:
       allowNameChange: true
       allowKindChange: true
+  - path: ingress.yaml
+    target:
+      kind: Ingress
+    options:
+      allowNameChange: true
+      allowKindChange: true
+
 

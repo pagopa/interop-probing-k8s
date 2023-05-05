@@ -6,7 +6,7 @@ metadata:
   name: interop-be-probing-api
   namespace: dev
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: interop-be-probing-api
@@ -16,6 +16,7 @@ spec:
       labels:
         app: interop-be-probing-api
     spec:
+      serviceAccountName: interop-be-probing-api
       containers:
       - image: ghcr.io/pagopa/interop-be-probing-api:develop
         name: interop-be-probing-api

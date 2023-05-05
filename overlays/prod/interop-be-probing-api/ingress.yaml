@@ -14,3 +14,10 @@ spec:
             name: interop-be-probing-api
             port:
                number: 80
+      - path: /producers
+        pathType: Prefix
+        backend:
+          service:
+            name: interop-be-probing-api
+            port:
+               number: 80
