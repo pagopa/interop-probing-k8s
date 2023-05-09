@@ -32,8 +32,6 @@ jobs:
       #     aws-region: ${{ env.AWS_REGION }}
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
-        with:
-          version: 'v.1.24.12' 
       # - name: Get kubeconfig
       #   run: |
       #     aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
@@ -41,6 +39,7 @@ jobs:
         env: 
           SERVICE: ${{ matrix.service }}
         run: |
+          kubectl version
           kubectl kustomize overlays/dev/$SERVICE > build.yaml
           cat build.yaml
       # - name: Apply
