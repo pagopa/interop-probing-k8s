@@ -32,6 +32,8 @@ jobs:
       #     aws-region: ${{ env.AWS_REGION }}
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
+        with:
+          version: "v1.24.13"
       # - name: Get kubeconfig
       #   run: |
       #     aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
