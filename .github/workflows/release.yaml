@@ -3,7 +3,7 @@ name: "Release on EKS"
 on:
   push:
     branches:
-      - 'main'     
+      - '**'     
     paths:
       - '**'
 
@@ -12,9 +12,37 @@ permissions:
   contents: read    
 
 jobs:
-  kubernetes:
-    name: "kustomize"
+  dev-deploy:
+    strategy:
+      matrix:
+        service: [probing-api]
+    name: "dev-deployment"
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: Checkout
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      # - name: Configure AWS Credentials
+      #   env:
+      #     AWS_REGION: ${{ secrets.AWS_REGION }}
+      #     EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
+      #   uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
+      #   with:
+      #     role-to-assume: ${{ secrets.IAM_ROLE }}
+      #     aws-region: ${{ env.AWS_REGION }}
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v.1.24.12' 
+      # - name: Get kubeconfig
+      #   run: |
+      #     aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+      - name: Build with kustomize
+        env: 
+          SERVICE: ${{ matrix.service }}
+        run: |
+          kubectl kustomize overlays/dev/$SERVICE > build.yaml
+          cat build.yaml
+      # - name: Apply
+      #   run: |
+      #     kubectl apply -f build.yaml
