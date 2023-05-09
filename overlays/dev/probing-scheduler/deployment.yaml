@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: interop-be-probing-scheduler
+  name: interop-be-probing-scheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interop-be-probing-scheduler
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: interop-be-probing-scheduler
+    spec:
+      serviceAccountName: interop-be-probing-scheduler
+      containers:
+      - image: ghcr.io/pagopa/interop-be-probing-scheduler:develop
+        name: interop-be-probing-scheduler
+        resources: {}
+        env:
+          - name: API_OPERATIONS_ESERVICE_BASEPATH
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: API_ESERVICE_BASEPATH
+          - name: API_OPERATIONS_BASEURL
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: API_OPERATIONS_BASEURL
+          - name: SQS_ENDPOINT_POLL_QUEUE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-scheduler
+                key: SQS_ENDPOINT_POLL_QUEUE
+          - name: SCHEDULER_LIMIT
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-scheduler
+                key: SCHEDULER_LIMIT
+          - name: SCHEDULER_CRON_EXPRESSION
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-scheduler
+                key: SCHEDULER_CRON_EXPRESSION                                                          
+status: {}
