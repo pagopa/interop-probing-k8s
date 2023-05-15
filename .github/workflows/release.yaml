@@ -139,7 +139,7 @@ jobs:
         run: |
           kubectl apply -f build.yaml
   prod-deploy:
-    if: ${{ github.event_name == 'create' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref_type == 'tag' }}
     strategy:
       matrix:
         service: [common,probing-api,probing-caller,probing-eservice-operations,probing-eservice-registry-reader,probing-eservice-registry-updater,probing-scheduler,probing-telemetry-writer]
