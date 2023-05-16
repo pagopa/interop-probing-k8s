@@ -41,6 +41,11 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-api
                 key: VALIDATE_MIGRATION_NAMING
+          - name: TOLERANCE_MULTIPLIER_IN_MINUTES
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-api
+                key: TOLERANCE_MULTIPLIER_IN_MINUTES
           - name: DATABASE_URL
             valueFrom:
               configMapKeyRef:
