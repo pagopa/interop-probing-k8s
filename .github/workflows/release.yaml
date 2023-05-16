@@ -36,7 +36,7 @@ jobs:
       matrix:
         service: [common,probing-api,probing-caller,probing-eservice-operations,
           probing-eservice-registry-reader,probing-eservice-registry-updater,
-          probing-scheduler,probing-telemetry-writer]
+          probing-response-updater,probing-scheduler,probing-telemetry-writer]
     name: "dev-deployment-manual"
     runs-on: ubuntu-latest
     environment: dev
@@ -110,9 +110,9 @@ jobs:
   #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
   #   strategy:
   #     matrix:
-  #       service: [common,probing-api,probing-caller,probing-eservice-operations,
-  #         probing-eservice-registry-reader,probing-eservice-registry-updater,
-  #         probing-scheduler,probing-telemetry-writer]
+      # service: [common,probing-api,probing-caller,probing-eservice-operations,
+      #   probing-eservice-registry-reader,probing-eservice-registry-updater,
+      #   probing-response-updater,probing-scheduler,probing-telemetry-writer]
   #   name: "uat-deployment"
   #   runs-on: ubuntu-latest
   #   environment: uat
@@ -150,7 +150,7 @@ jobs:
       matrix:
         service: [common,probing-api,probing-caller,probing-eservice-operations,
           probing-eservice-registry-reader,probing-eservice-registry-updater,
-          probing-scheduler,probing-telemetry-writer]
+          probing-response-updater,probing-scheduler,probing-telemetry-writer]
     name: "prod-deployment"
     runs-on: ubuntu-latest
     environment: prod
