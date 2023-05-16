@@ -16,7 +16,7 @@ spec:
         app: interop-be-probing-eservice-operations
     spec:
       containers:
-      - image: ghcr.io/pagopa/interop-be-probing-eservice-operations:dev-environment-test
+      - image: ghcr.io/pagopa/interop-be-probing-eservice-operations:develop
         name: interop-be-probing-eservice-operations
         resources: {}
         env:
