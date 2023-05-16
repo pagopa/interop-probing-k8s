@@ -25,7 +25,7 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-common
-                key: API_ESERVICE_BASEPATH
+                key: API_OPERATIONS_ESERVICE_BASEPATH
           - name: API_OPERATIONS_BASEURL
             valueFrom:
               configMapKeyRef:

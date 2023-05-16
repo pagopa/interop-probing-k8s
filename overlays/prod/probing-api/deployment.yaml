@@ -21,16 +21,16 @@ spec:
         name: interop-be-probing-api
         resources: {}
         env:
-          - name: API_ESERVICE_BASEPATH
+          - name: API_OPERATIONS_ESERVICE_BASEPATH
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-common
-                key: API_ESERVICE_BASEPATH
-          - name: API_PRODUCER_BASEPATH
+                key: API_OPERATIONS_ESERVICE_BASEPATH
+          - name: API_OPERATIONS_PRODUCER_BASEPATH
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-common
-                key: API_PRODUCER_BASEPATH
+                key: API_OPERATIONS_PRODUCER_BASEPATH
           - name: API_OPERATIONS_BASEURL
             valueFrom:
               configMapKeyRef:
@@ -41,6 +41,11 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-api
                 key: VALIDATE_MIGRATION_NAMING
+          - name: TOLERANCE_MULTIPLIER_IN_MINUTES
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-api
+                key: TOLERANCE_MULTIPLIER_IN_MINUTES
           - name: DATABASE_URL
             valueFrom:
               configMapKeyRef:
@@ -76,11 +81,6 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-api
                 key: CORS_ORIGIN_ALLOWED
-          - name: TOLERANCE_MULTIPLIER_IN_MINUTES
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: TOLERANCE_MULTIPLIER_IN_MINUTES
           - name: FLYWAY_DATABASE_USERNAME
             valueFrom:
               secretKeyRef:

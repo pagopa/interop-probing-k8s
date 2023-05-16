@@ -13,7 +13,7 @@ patches:
       allowKindChange: false
   - path: deployment.yaml
     target:
-      kind: ConfigMap
+      kind: Deployment
     options:
       allowNameChange: true
       allowKindChange: false
