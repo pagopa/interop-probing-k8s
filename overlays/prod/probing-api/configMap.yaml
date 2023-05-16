@@ -8,6 +8,7 @@ data:
   VALIDATE_MIGRATION_NAMING: "true"
   SCHEMA_NAME: interop_probing_operational
   CORS_ORIGIN_ALLOWED: "*"
+  TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-api
