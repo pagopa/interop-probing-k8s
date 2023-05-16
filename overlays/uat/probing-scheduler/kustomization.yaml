@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: uat
 resources:
 - ../../../base/configMap
+- ../../../base/deployment
 patches:
   - path: configMap.yaml
     target:
