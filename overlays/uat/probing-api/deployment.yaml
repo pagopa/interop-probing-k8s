@@ -76,6 +76,11 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-api
                 key: CORS_ORIGIN_ALLOWED
+          - name: TOLERANCE_MULTIPLIER_IN_MINUTES
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-api
+                key: TOLERANCE_MULTIPLIER_IN_MINUTES
           - name: FLYWAY_DATABASE_USERNAME
             valueFrom:
               secretKeyRef:
