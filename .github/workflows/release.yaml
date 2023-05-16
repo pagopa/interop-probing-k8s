@@ -1,0 +1,184 @@
+name: "Release on EKS"
+
+on:
+  push:
+    branches:
+      - '**'     
+    paths:
+      - '**'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      environment:
+        description: 'Which environment to update.'
+        type: choice
+        required: true
+        default: dev
+        options:
+        - dev
+
+permissions:
+  id-token: write   
+  contents: read    
+
+jobs:
+  dev-deploy-manual:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    strategy:
+      matrix:
+        service: [common,probing-api,probing-caller,probing-eservice-operations,
+          probing-eservice-registry-reader,probing-eservice-registry-updater,
+          probing-scheduler,probing-telemetry-writer]
+    name: "dev-deployment-manual"
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - name: Configure AWS Credentials
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
+        with:
+          role-to-assume: ${{ secrets.IAM_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: ${{ vars.KUBECTL_VERSION}}
+      - name: Get kubeconfig
+        run: |
+          aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+      - name: Build with kustomize
+        env: 
+          SERVICE: ${{ matrix.service }}
+        run: |
+          kubectl version
+          kubectl kustomize overlays/dev/$SERVICE > build.yaml
+          cat build.yaml
+      - name: Apply
+        run: |
+          kubectl apply -f build.yaml
+  dev-deploy:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    strategy:
+      matrix:
+        service: [common,probing-api,probing-caller,probing-eservice-operations,
+          probing-eservice-registry-reader,probing-eservice-registry-updater,
+          probing-scheduler,probing-telemetry-writer]
+    name: "dev-deployment"
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - name: Configure AWS Credentials
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
+        with:
+          role-to-assume: ${{ secrets.IAM_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: ${{ vars.KUBECTL_VERSION}}
+      - name: Get kubeconfig
+        run: |
+          aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+      - name: Build with kustomize
+        env: 
+          SERVICE: ${{ matrix.service }}
+        run: |
+          kubectl version
+          kubectl kustomize overlays/dev/$SERVICE > build.yaml
+          cat build.yaml
+      - name: Apply
+        run: |
+          kubectl apply -f build.yaml
+  uat-deploy:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    strategy:
+      matrix:
+        service: [common,probing-api,probing-caller,probing-eservice-operations,
+          probing-eservice-registry-reader,probing-eservice-registry-updater,
+          probing-scheduler,probing-telemetry-writer]
+    name: "uat-deployment"
+    runs-on: ubuntu-latest
+    environment: uat
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - name: Configure AWS Credentials
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
+        with:
+          role-to-assume: ${{ secrets.IAM_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: ${{ vars.KUBECTL_VERSION}}
+      - name: Get kubeconfig
+        run: |
+          aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+      - name: Build with kustomize
+        env: 
+          SERVICE: ${{ matrix.service }}
+        run: |
+          kubectl version
+          kubectl kustomize overlays/uat/$SERVICE > build.yaml
+          cat build.yaml
+      - name: Apply
+        run: |
+          kubectl apply -f build.yaml
+  prod-deploy:
+    if: ${{ github.ref_type == 'tag' }}
+    strategy:
+      matrix:
+        service: [common,probing-api,probing-caller,probing-eservice-operations,
+          probing-eservice-registry-reader,probing-eservice-registry-updater,
+          probing-scheduler,probing-telemetry-writer]
+    name: "prod-deployment"
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - name: Configure AWS Credentials
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
+        with:
+          role-to-assume: ${{ secrets.IAM_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: ${{ vars.KUBECTL_VERSION}}
+      - name: Get kubeconfig
+        run: |
+          aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+      - name: Build with kustomize
+        env: 
+          SERVICE: ${{ matrix.service }}
+        run: |
+          kubectl version
+          kubectl kustomize overlays/prod/$SERVICE > build.yaml
+          cat build.yaml
+      - name: Apply
+        run: |
+          kubectl apply -f build.yaml

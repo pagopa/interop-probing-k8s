@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ./common
+- ./probing-api
+- ./probing-caller
+- ./probing-eservice-operations
+- ./probing-eservice-registry-reader
+- ./probing-eservice-registry-updater
+- ./probing-scheduler
