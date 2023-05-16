@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: prod
 resources:
 - ../../../base/configMap
+- ../../../base/deployment
 patches:
   - path: configMap.yaml
     target:
@@ -10,5 +11,12 @@ patches:
     options:
       allowNameChange: true
       allowKindChange: false
+  - path: deployment.yaml
+    target:
+      kind: Deployment
+    options:
+      allowNameChange: true
+      allowKindChange: false
+
 
 

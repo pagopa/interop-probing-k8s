@@ -21,16 +21,16 @@ spec:
         name: interop-be-probing-api
         resources: {}
         env:
-          - name: API_ESERVICE_BASEPATH
+          - name: API_OPERATIONS_ESERVICE_BASEPATH
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-common
-                key: API_ESERVICE_BASEPATH
-          - name: API_PRODUCER_BASEPATH
+                key: API_OPERATIONS_ESERVICE_BASEPATH
+          - name: API_OPERATIONS_PRODUCER_BASEPATH
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-common
-                key: API_PRODUCER_BASEPATH
+                key: API_OPERATIONS_PRODUCER_BASEPATH
           - name: API_OPERATIONS_BASEURL
             valueFrom:
               configMapKeyRef:

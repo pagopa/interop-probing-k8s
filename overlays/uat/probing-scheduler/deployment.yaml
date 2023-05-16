@@ -4,6 +4,8 @@ metadata:
   labels:
     app: interop-be-probing-scheduler
   name: interop-be-probing-scheduler
+  annotations:
+    reloader.stakater.com/search: "true"
 spec:
   replicas: 1
   selector:
@@ -25,7 +27,7 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-common
-                key: API_ESERVICE_BASEPATH
+                key: API_OPERATIONS_ESERVICE_BASEPATH
           - name: API_OPERATIONS_BASEURL
             valueFrom:
               configMapKeyRef:
