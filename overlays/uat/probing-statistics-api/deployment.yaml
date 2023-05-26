@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: interop-be-probing-statistics-api
+  name: interop-be-probing-statistics-api
+  annotations:
+    reloader.stakater.com/search: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interop-be-probing-statistics-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: interop-be-probing-statistics-api
+    spec:
+      serviceAccountName: interop-be-probing-statistics-api
+      containers:
+      - image: ghcr.io/pagopa/interop-be-probing-statistics-api:develop
+        name: interop-be-probing-statistics-api
+        resources: {}
+        env:
+          - name: TIMESTREAM_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: TIMESTREAM_DATABASE
+          - name: TIMESTREAM_TABLE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: TIMESTREAM_TABLE
+          - name: CORS_ORIGIN_ALLOWED
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: CORS_ORIGIN_ALLOWED                                        
+status: {}
