@@ -4,10 +4,24 @@ namespace: dev
 resources:
 - ../../../base/configMap
 - ../../../base/deployment
+- ../../../base/svc
+- ../../../base/ingress
 patches:
   - path: configMap.yaml
     target:
       kind: ConfigMap
+    options:
+      allowNameChange: true
+      allowKindChange: false
+  - path: svc.yaml
+    target:
+      kind: Service
+    options:
+      allowNameChange: true
+      allowKindChange: false
+  - path: ingress.yaml
+    target:
+      kind: Ingress
     options:
       allowNameChange: true
       allowKindChange: false
