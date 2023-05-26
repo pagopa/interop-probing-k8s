@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: interop-be-probing-statistics-api
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - path: /eservices/statistics
+        pathType: Prefix
+        backend:
+          service:
+            name: interop-be-probing-statistics-api
+            port:
+               number: 80

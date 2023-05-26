@@ -37,7 +37,27 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-eservice-registry-caller
-                key: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE                                                            
+                key: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
+          - name: JWT_PAYLOAD_EXPIRE_TIME_IN_SEC
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: JWT_PAYLOAD_EXPIRE_TIME_IN_SEC       
+          - name: JWT_PAYLOAD_ISSUER
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: JWT_PAYLOAD_ISSUER       
+          - name: JWT_PAYLOAD_SUBJECT
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: JWT_PAYLOAD_SUBJECT       
+          - name: JWT_PAYLOAD_KID_KMS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: JWT_PAYLOAD_KID_KMS                                                                   
         ports: 
           - containerPort: 8080
             name: http
