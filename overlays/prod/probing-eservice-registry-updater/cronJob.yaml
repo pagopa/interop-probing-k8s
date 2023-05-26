@@ -20,7 +20,7 @@ spec:
           serviceAccountName: interop-be-probing-eservice-registry-updater
           containers:
             - name: interop-be-probing-eservice-registry-updater
-              image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater:feature-dev-environment-test
+              image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater:develop
               imagePullPolicy: Always
               env:
                 - name: API_OPERATIONS_ESERVICE_BASEPATH
