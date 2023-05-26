@@ -36,7 +36,7 @@ jobs:
       matrix:
         service: [common,probing-api,probing-caller,probing-eservice-operations,
           probing-eservice-registry-reader,probing-eservice-registry-updater,
-          probing-response-updater,probing-scheduler,probing-telemetry-writer]
+          probing-response-updater,probing-scheduler,probing-telemetry-writer,probing-statistics-api]
     name: "dev-deployment-manual"
     runs-on: ubuntu-latest
     environment: dev
@@ -74,7 +74,7 @@ jobs:
       matrix:
         service: [common,probing-api,probing-caller,probing-eservice-operations,
           probing-eservice-registry-reader,probing-eservice-registry-updater,
-          probing-scheduler,probing-telemetry-writer]
+          probing-scheduler,probing-telemetry-writer,probing-statistics-api]
     name: "dev-deployment"
     runs-on: ubuntu-latest
     environment: dev
@@ -112,7 +112,7 @@ jobs:
   #     matrix:
       # service: [common,probing-api,probing-caller,probing-eservice-operations,
       #   probing-eservice-registry-reader,probing-eservice-registry-updater,
-      #   probing-response-updater,probing-scheduler,probing-telemetry-writer]
+      #   probing-response-updater,probing-scheduler,probing-telemetry-writer,probing-statistics-api]
   #   name: "uat-deployment"
   #   runs-on: ubuntu-latest
   #   environment: uat
@@ -150,7 +150,7 @@ jobs:
       matrix:
         service: [common,probing-api,probing-caller,probing-eservice-operations,
           probing-eservice-registry-reader,probing-eservice-registry-updater,
-          probing-response-updater,probing-scheduler,probing-telemetry-writer]
+          probing-response-updater,probing-scheduler,probing-telemetry-writer,probing-statistics-api]
     name: "prod-deployment"
     runs-on: ubuntu-latest
     environment: prod
