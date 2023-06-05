@@ -7,7 +7,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /eservices/statistics
+      - path: /telemetryData
         pathType: Prefix
         backend:
           service:
