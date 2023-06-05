@@ -23,6 +23,26 @@ spec:
         name: interop-be-probing-eservice-registry-caller
         resources: {}
         env:
+          - name: THREADPOOL_MAX_POOL_SIZE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: THREADPOOL_MAX_POOL_SIZE
+          - name: THREADPOOL_QUEUE_CAPACITY
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: THREADPOOL_QUEUE_CAPACITY
+          - name: THREADPOOL_CORE_POOL_SIZE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: THREADPOOL_CORE_POOL_SIZE
+          - name: THREADPOOL_THREAD_NAME_PREFIX
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: THREADPOOL_THREAD_NAME_PREFIX
           - name: SQS_ENDPOINT_POLL_QUEUE
             valueFrom:
               configMapKeyRef:

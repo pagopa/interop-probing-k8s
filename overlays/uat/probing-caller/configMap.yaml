@@ -7,6 +7,10 @@ data:
   JWT_PAYLOAD_ISSUER: Issuer
   JWT_PAYLOAD_SUBJECT: Subject
   JWT_PAYLOAD_KID_KMS: "arn:aws:kms:eu-central-1:774300547186:key/f9af55d7-6e12-4d11-9f7d-bc1bfd6870f8"
+  THREADPOOL_MAX_POOL_SIZE: "15"
+  THREADPOOL_QUEUE_CAPACITY: "10" 
+  THREADPOOL_CORE_POOL_SIZE: "5"
+  THREADPOOL_THREAD_NAME_PREFIX: "AsyncThread-"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-eservice-registry-caller
