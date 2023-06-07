@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: prod
 resources:
 - ../../../base/configMap
-- ../../../base/deplyment
+- ../../../base/deployment
 patches:
   - path: configMap.yaml
     target:
