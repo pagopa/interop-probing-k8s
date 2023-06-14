@@ -19,10 +19,25 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-telemetry-writer
       containers:
+      - image: amazon/aws-xray-daemon:3.3.7
+        imagePullPolicy: Always
+        name: xray-daemon
+        ports:
+        - containerPort: 2000
+          protocol: UDP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
       - image: ghcr.io/pagopa/interop-be-probing-telemetry-writer:develop
         name: interop-be-probing-telemetry-writer
         resources: {}
         env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            value: localhost:2000
           - name: SQS_ENDPOINT_TELEMETRY_QUEUE
             valueFrom:
               configMapKeyRef:

@@ -9,6 +9,7 @@ data:
   SCHEMA_NAME: interop_probing_operational
   CORS_ORIGIN_ALLOWED: "*"
   TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
+  INTEROP_PROBING_API_APP_NAME: "Interop-be-probing-api"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-api

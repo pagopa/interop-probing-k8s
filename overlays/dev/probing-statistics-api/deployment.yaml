@@ -19,10 +19,25 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-statistics-api
       containers:
+      - image: amazon/aws-xray-daemon:3.3.7
+        imagePullPolicy: Always
+        name: xray-daemon
+        ports:
+        - containerPort: 2000
+          protocol: UDP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
       - image: ghcr.io/pagopa/interop-be-probing-statistics-api:develop
         name: interop-be-probing-statistics-api
         resources: {}
         env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            value: localhost:2000
           - name: TIMESTREAM_DATABASE
             valueFrom:
               configMapKeyRef:
@@ -37,5 +52,10 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-statistics-api
-                key: CORS_ORIGIN_ALLOWED                                        
+                key: CORS_ORIGIN_ALLOWED      
+          - name: INTEROP_PROBING_STATISTICS_APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: INTEROP_PROBING_STATISTICS_APP_NAME                                     
 status: {}

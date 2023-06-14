@@ -7,4 +7,7 @@ resources:
 - ./probing-eservice-operations
 - ./probing-eservice-registry-reader
 - ./probing-eservice-registry-updater
+- ./probing-eservice-response-updater
 - ./probing-scheduler
+- ./probing-statistics-api
+- ./probing-telemetry-writer

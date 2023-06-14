@@ -15,11 +15,27 @@ spec:
       labels:
         app: interop-be-probing-eservice-operations
     spec:
+      serviceAccountName: interop-be-probing-operations
       containers:
+      - image: amazon/aws-xray-daemon:3.3.7
+        imagePullPolicy: Always
+        name: xray-daemon
+        ports:
+        - containerPort: 2000
+          protocol: UDP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
       - image: ghcr.io/pagopa/interop-be-probing-eservice-operations:develop
         name: interop-be-probing-eservice-operations
         resources: {}
         env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            value: localhost:2000
           - name: API_OPERATIONS_ESERVICE_BASEPATH
             valueFrom:
               configMapKeyRef:
@@ -80,6 +96,11 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-eservice-operations
                 key: TOLERANCE_MULTIPLIER_IN_MINUTES
+          - name: INTEROP_PROBING_OPERATIONS_APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: INTEROP_PROBING_OPERATIONS_APP_NAME
           - name: FLYWAY_DATABASE_USERNAME
             valueFrom:
               secretKeyRef:

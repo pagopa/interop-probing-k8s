@@ -19,10 +19,25 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-caller
       containers:
+      - image: amazon/aws-xray-daemon:3.3.7
+        imagePullPolicy: Always
+        name: xray-daemon
+        ports:
+        - containerPort: 2000
+          protocol: UDP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
       - image: ghcr.io/pagopa/interop-be-probing-caller:develop
         name: interop-be-probing-eservice-registry-caller
         resources: {}
         env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            value: localhost:2000
           - name: THREADPOOL_MAX_POOL_SIZE
             valueFrom:
               configMapKeyRef:

@@ -16,12 +16,27 @@ spec:
           labels:
             app: interop-be-probing-eservice-registry-reader
         spec:
-          serviceAccountName: interop-be-probing-eservice-registry-reader
+          serviceAccountName: interop-be-probing-eservice-registry-reader          
           containers:
+            - image: amazon/aws-xray-daemon:3.3.7
+              imagePullPolicy: Always
+              name: xray-daemon
+              ports:
+              - containerPort: 2000
+                protocol: UDP
+              resources:
+                limits:
+                  cpu: 100m
+                  memory: 256Mi
+                requests:
+                  cpu: 50m
+                  memory: 50Mi
             - name: interop-be-probing-eservice-registry-reader
               image: ghcr.io/pagopa/interop-be-probing-eservice-registry-reader:develop
               imagePullPolicy: Always
               env:
+                - name: AWS_XRAY_DAEMON_ADDRESS
+                  value: localhost:2000
                 - name: S3_BUCKET_NAME
                   valueFrom:
                     configMapKeyRef:
