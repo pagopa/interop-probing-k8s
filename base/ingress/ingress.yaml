@@ -4,6 +4,7 @@ metadata:
   name: placeholder
   annotations:
     alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/healthcheck-path: /status
     alb.ingress.kubernetes.io/group.name: interop-probing-alb
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/load-balancer-name: interop-probing-alb-dev
