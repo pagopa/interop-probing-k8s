@@ -5,4 +5,21 @@ metadata:
     reloader.stakater.com/search: "true"
   name: placeholder
 spec:
-    
+  selector:
+  strategy: {}
+  template:
+    spec:
+      containers:
+      - image: amazon/aws-xray-daemon:3.3.7
+        imagePullPolicy: Always
+        name: xray-daemon
+        ports:
+        - containerPort: 2000
+          protocol: UDP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
