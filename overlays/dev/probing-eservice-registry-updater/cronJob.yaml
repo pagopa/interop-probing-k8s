@@ -22,8 +22,6 @@ spec:
               image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater:develop
               imagePullPolicy: Always
               env:
-                - name: AWS_XRAY_DAEMON_ADDRESS
-                  value: localhost:2000
                 - name: API_OPERATIONS_ESERVICE_BASEPATH
                   valueFrom:
                     configMapKeyRef:

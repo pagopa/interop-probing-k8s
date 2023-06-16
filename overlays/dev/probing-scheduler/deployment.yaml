@@ -52,5 +52,5 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-scheduler
-                key: THREADPOOL_MAX_POOL_SIZE                                                      
+                key: THREADPOOL_MAX_POOL_SIZE                                                  
 status: {}

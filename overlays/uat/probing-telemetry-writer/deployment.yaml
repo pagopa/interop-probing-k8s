@@ -29,7 +29,7 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-telemetry-writer
-                key: SQS_ENDPOINT_TELEMETRY_QUEUE
+                key: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
           - name: TIMESTREAM_DATABASE
             valueFrom:
               configMapKeyRef:

@@ -4,6 +4,8 @@ metadata:
   labels:
     app: interop-be-probing-scheduler
   name: interop-be-probing-scheduler
+  annotations:
+    reloader.stakater.com/search: "true"
 spec:
   replicas: 1
   selector:
