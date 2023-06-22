@@ -23,7 +23,10 @@ spec:
               imagePullPolicy: Always
               env:
                 - name: AWS_XRAY_DAEMON_ADDRESS
-                  value: localhost:2000
+                  valueFrom:
+            configMapKeyRef:
+              name: interop-be-probing-common
+              key: AWS_XRAY_DAEMON_ADDRESS
                 - name: S3_BUCKET_NAME
                   valueFrom:
                     configMapKeyRef:

@@ -1,11 +1,12 @@
 apiVersion: v1
 data:
-  SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE: "https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_telemetry_result_queue"
+  SQS_ENDPOINT_TELEMETRY_QUEUE: "https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_telemetry_result_queue"
   TIMESTREAM_DATABASE: "interop_probing_telemetry" 
   TIMESTREAM_TABLE: "probing_telemetry"
   TIMESTREAM_RETRIES: "10"
   TIMESTREAM_MAX_CONNECTIONS: "5000"
   TIMESTREAM_ATTEMPT_TIMEOUT: "20"
+  INTEROP_PROBING_TELEMETRY_WRITER_NAME: "Interop-be-probing-telemetry-writer"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-telemetry-writer

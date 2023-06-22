@@ -4,8 +4,6 @@ metadata:
   labels:
     app: interop-be-probing-response-updater
   name: interop-be-probing-response-updater
-  annotations:
-    reloader.stakater.com/search: "true"
 spec:
   replicas: 1
   selector:
@@ -24,7 +22,10 @@ spec:
         resources: {}
         env:
           - name: AWS_XRAY_DAEMON_ADDRESS
-            value: localhost:2000
+            valueFrom:
+            configMapKeyRef:
+              name: interop-be-probing-common
+              key: AWS_XRAY_DAEMON_ADDRESS
           - name: API_OPERATIONS_ESERVICE_BASEPATH
             valueFrom:
               configMapKeyRef:
@@ -44,7 +45,12 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-response-updater
-                key: SQS_ENDPOINT_POLL_RESULT_QUEUE                                                
+                key: SQS_ENDPOINT_POLL_RESULT_QUEUE
+          - name: INTEROP_PROBING_RESPONSE_UPDATER_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-response-updater
+                key: INTEROP_PROBING_RESPONSE_UPDATER_NAME                                                   
         ports: 
           - containerPort: 8080
             name: http
