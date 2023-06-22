@@ -4,6 +4,7 @@ namespace: dev
 resources:
 - ../../../base/deployment
 - ../../../base/configMap
+- ../../../base/hpa
 patches:
   - path: deployment.yaml
     target:
@@ -14,6 +15,12 @@ patches:
   - path: configMap.yaml
     target:
       kind: ConfigMap
+    options:
+      allowNameChange: true
+      allowKindChange: false
+  - path: hpa.yaml
+    target:
+      kind: HorizontalPodAutoscaler
     options:
       allowNameChange: true
       allowKindChange: false
