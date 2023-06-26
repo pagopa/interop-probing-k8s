@@ -21,8 +21,39 @@ spec:
       containers:
       - image: ghcr.io/pagopa/interop-be-probing-caller:develop
         name: interop-be-probing-eservice-registry-caller
-        resources: {}
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
         env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_XRAY_DAEMON_ADDRESS
+          - name: THREADPOOL_MAX_POOL_SIZE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: THREADPOOL_MAX_POOL_SIZE
+          - name: THREADPOOL_QUEUE_CAPACITY
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: THREADPOOL_QUEUE_CAPACITY
+          - name: THREADPOOL_CORE_POOL_SIZE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: THREADPOOL_CORE_POOL_SIZE
+          - name: THREADPOOL_THREAD_NAME_PREFIX
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: THREADPOOL_THREAD_NAME_PREFIX
           - name: SQS_ENDPOINT_POLL_QUEUE
             valueFrom:
               configMapKeyRef:
@@ -37,7 +68,32 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-eservice-registry-caller
-                key: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE                                                            
+                key: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
+          - name: JWT_PAYLOAD_EXPIRE_TIME_IN_SEC
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: JWT_PAYLOAD_EXPIRE_TIME_IN_SEC       
+          - name: JWT_PAYLOAD_ISSUER
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: JWT_PAYLOAD_ISSUER       
+          - name: JWT_PAYLOAD_SUBJECT
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: JWT_PAYLOAD_SUBJECT       
+          - name: JWT_PAYLOAD_KID_KMS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: JWT_PAYLOAD_KID_KMS
+          - name: INTEROP_PROBING_CALLER_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-registry-caller
+                key: INTEROP_PROBING_CALLER_NAME                                                                    
         ports: 
           - containerPort: 8080
             name: http

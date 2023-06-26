@@ -5,6 +5,7 @@ resources:
 - ../../../base/deployment
 - ../../../base/configMap
 - ../../../base/svc
+- ../../../base/hpa
 patches:
   - path: deployment.yaml
     target:
@@ -21,6 +22,12 @@ patches:
   - path: svc.yaml
     target:
       kind: Service
+    options:
+      allowNameChange: true
+      allowKindChange: false
+  - path: hpa.yaml
+    target:
+      kind: HorizontalPodAutoscaler
     options:
       allowNameChange: true
       allowKindChange: false

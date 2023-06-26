@@ -1,8 +1,0 @@
-apiVersion: v1
-data:
-  SQS_ENDPOINT_POLL_QUEUE: https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_polling_queue
-  SQS_ENDPOINT_POLL_RESULT_QUEUE: https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_polling_result_queue
-  SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE: https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_telemetry_result_queue
-kind: ConfigMap
-metadata:
-  name: interop-be-probing-eservice-registry-caller

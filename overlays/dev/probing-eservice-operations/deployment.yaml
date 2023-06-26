@@ -15,11 +15,23 @@ spec:
       labels:
         app: interop-be-probing-eservice-operations
     spec:
+      serviceAccountName: interop-be-probing-operations
       containers:
       - image: ghcr.io/pagopa/interop-be-probing-eservice-operations:develop
         name: interop-be-probing-eservice-operations
-        resources: {}
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
         env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_XRAY_DAEMON_ADDRESS
           - name: API_OPERATIONS_ESERVICE_BASEPATH
             valueFrom:
               configMapKeyRef:
@@ -80,6 +92,11 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-eservice-operations
                 key: TOLERANCE_MULTIPLIER_IN_MINUTES
+          - name: INTEROP_PROBING_OPERATIONS_APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: INTEROP_PROBING_OPERATIONS_APP_NAME
           - name: FLYWAY_DATABASE_USERNAME
             valueFrom:
               secretKeyRef:

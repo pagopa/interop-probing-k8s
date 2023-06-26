@@ -19,8 +19,19 @@ spec:
       containers:
       - image: ghcr.io/pagopa/interop-be-probing-api:develop
         name: interop-be-probing-api
-        resources: {}
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
         env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_XRAY_DAEMON_ADDRESS
           - name: API_OPERATIONS_ESERVICE_BASEPATH
             valueFrom:
               configMapKeyRef:
@@ -81,6 +92,11 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-api
                 key: CORS_ORIGIN_ALLOWED
+          - name: INTEROP_PROBING_API_APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-api
+                key: INTEROP_PROBING_API_APP_NAME
           - name: FLYWAY_DATABASE_USERNAME
             valueFrom:
               secretKeyRef:

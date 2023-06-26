@@ -5,4 +5,7 @@ metadata:
     reloader.stakater.com/search: "true"
   name: placeholder
 spec:
-    
+  selector:
+  strategy: {}
+  template:
+    spec:

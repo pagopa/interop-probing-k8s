@@ -9,6 +9,7 @@ data:
   SCHEMA_NAME: interop_probing_operational
   TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
   CORS_ORIGIN_ALLOWED: "*"
+  INTEROP_PROBING_OPERATIONS_APP_NAME: "Interop-be-probing-eservice-operations"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-eservice-operations

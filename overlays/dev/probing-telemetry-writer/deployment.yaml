@@ -21,13 +21,24 @@ spec:
       containers:
       - image: ghcr.io/pagopa/interop-be-probing-telemetry-writer:develop
         name: interop-be-probing-telemetry-writer
-        resources: {}
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
         env:
-          - name: SQS_ENDPOINT_TELEMETRY_QUEUE
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_XRAY_DAEMON_ADDRESS
+          - name: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-telemetry-writer
-                key: SQS_ENDPOINT_TELEMETRY_QUEUE
+                key: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
           - name: TIMESTREAM_DATABASE
             valueFrom:
               configMapKeyRef:
@@ -52,5 +63,10 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-telemetry-writer
-                key: TIMESTREAM_ATTEMPT_TIMEOUT                                             
+                key: TIMESTREAM_ATTEMPT_TIMEOUT
+          - name: INTEROP_PROBING_TELEMETRY_WRITER_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-telemetry-writer
+                key: INTEROP_PROBING_TELEMETRY_WRITER_NAME                                              
 status: {}
