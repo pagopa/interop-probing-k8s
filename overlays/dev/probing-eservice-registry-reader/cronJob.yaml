@@ -21,6 +21,13 @@ spec:
             - name: interop-be-probing-eservice-registry-reader
               image: ghcr.io/pagopa/interop-be-probing-eservice-registry-reader:develop
               imagePullPolicy: Always
+              resources:
+                limits:
+                  cpu: 500m
+                  memory: 512Mi
+                requests:
+                  cpu: 500m
+                  memory: 512Mi
               env:
                 - name: AWS_XRAY_DAEMON_ADDRESS
                   valueFrom:

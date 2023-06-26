@@ -1,9 +1,0 @@
-apiVersion: v1
-data:
-  TIMESTREAM_DATABASE: "interop_probing_telemetry" 
-  TIMESTREAM_TABLE: "probing_telemetry"
-  CORS_ORIGIN_ALLOWED: "*"
-  INTEROP_PROBING_STATISTICS_APP_NAME: "Interop-be-probing-statistics-api"
-kind: ConfigMap
-metadata:
-  name: interop-be-probing-statistics-api

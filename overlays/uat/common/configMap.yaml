@@ -1,9 +1,0 @@
-apiVersion: v1
-data:
-  API_OPERATIONS_BASEURL: http://interop-be-probing-eservice-operations.dev.svc.cluster.local/
-  API_OPERATIONS_ESERVICE_BASEPATH: eservices
-  API_OPERATIONS_PRODUCER_BASEPATH: producers
-  AWS_XRAY_DAEMON_ADDRESS: "xray-daemon.aws-observability.svc.cluster.local:80"
-kind: ConfigMap
-metadata:
-  name: interop-be-probing-common

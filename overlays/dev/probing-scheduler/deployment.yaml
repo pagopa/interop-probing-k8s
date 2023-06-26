@@ -19,7 +19,13 @@ spec:
       containers:
       - image: ghcr.io/pagopa/interop-be-probing-scheduler:develop
         name: interop-be-probing-scheduler
-        resources: {}
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
         env:
           - name: AWS_XRAY_DAEMON_ADDRESS
             valueFrom:
