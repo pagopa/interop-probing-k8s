@@ -34,6 +34,26 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-common
                 key: AWS_XRAY_DAEMON_ADDRESS
+          - name: GRAPH_PERFORMANCE_PRECISION
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_PERFORMANCE_PRECISION
+          - name: GRAPH_PERFORMANCE_TOLERANCE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_PERFORMANCE_TOLERANCE
+          - name: GRAPH_FAILURE_PRECISION
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_FAILURE_PRECISION
+          - name: GRAPH_FAILURE_TOLERANCE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_FAILURE_TOLERANCE
           - name: TIMESTREAM_DATABASE
             valueFrom:
               configMapKeyRef:
