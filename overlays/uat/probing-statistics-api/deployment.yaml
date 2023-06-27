@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: interop-be-probing-statistics-api
+  name: interop-be-probing-statistics-api
+  annotations:
+    reloader.stakater.com/search: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interop-be-probing-statistics-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: interop-be-probing-statistics-api
+    spec:
+      serviceAccountName: interop-be-probing-statistics-api
+      containers:
+      - image: ghcr.io/pagopa/interop-be-probing-statistics-api:develop
+        name: interop-be-probing-statistics-api
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_XRAY_DAEMON_ADDRESS
+          - name: GRAPH_PERFORMANCE_PRECISION
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_PERFORMANCE_PRECISION
+          - name: GRAPH_PERFORMANCE_TOLERANCE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_PERFORMANCE_TOLERANCE
+          - name: GRAPH_FAILURE_PRECISION
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_FAILURE_PRECISION
+          - name: GRAPH_FAILURE_TOLERANCE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_FAILURE_TOLERANCE
+          - name: TIMESTREAM_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: TIMESTREAM_DATABASE
+          - name: TIMESTREAM_TABLE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: TIMESTREAM_TABLE
+          - name: CORS_ORIGIN_ALLOWED
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: CORS_ORIGIN_ALLOWED      
+          - name: INTEROP_PROBING_STATISTICS_APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: INTEROP_PROBING_STATISTICS_APP_NAME                                     
+status: {}

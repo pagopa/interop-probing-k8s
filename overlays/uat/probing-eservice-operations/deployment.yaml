@@ -1,0 +1,123 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: interop-be-probing-eservice-operations
+  name: interop-be-probing-eservice-operations
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interop-be-probing-eservice-operations
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: interop-be-probing-eservice-operations
+    spec:
+      serviceAccountName: interop-be-probing-operations
+      containers:
+      - image: ghcr.io/pagopa/interop-be-probing-eservice-operations:develop
+        name: interop-be-probing-eservice-operations
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_XRAY_DAEMON_ADDRESS
+          - name: API_OPERATIONS_ESERVICE_BASEPATH
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: API_OPERATIONS_ESERVICE_BASEPATH
+          - name: API_OPERATIONS_PRODUCER_BASEPATH
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: API_OPERATIONS_PRODUCER_BASEPATH
+          - name: API_OPERATIONS_BASEURL
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: API_OPERATIONS_BASEURL
+          - name: VALIDATE_MIGRATION_NAMING
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: VALIDATE_MIGRATION_NAMING
+          - name: DATABASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: DATABASE_URL    
+          - name: DATABASE_DRIVER
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: DATABASE_DRIVER   
+          - name: DATABASE_PLATFORM
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: DATABASE_PLATFORM   
+          - name: DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: DATABASE   
+          - name: JDBC_TIME_ZONE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: JDBC_TIME_ZONE
+          - name: SCHEMA_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: SCHEMA_NAME
+          - name: CORS_ORIGIN_ALLOWED
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: CORS_ORIGIN_ALLOWED
+          - name: TOLERANCE_MULTIPLIER_IN_MINUTES
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: TOLERANCE_MULTIPLIER_IN_MINUTES
+          - name: INTEROP_PROBING_OPERATIONS_APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-eservice-operations
+                key: INTEROP_PROBING_OPERATIONS_APP_NAME
+          - name: FLYWAY_DATABASE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: interop-be-probing-aurora-flyway-user-credentials
+                key: FLYWAY_DATABASE_USERNAME                
+          - name: FLYWAY_DATABASE_PASSWORD 
+            valueFrom:
+              secretKeyRef:
+                name: interop-be-probing-aurora-flyway-user-credentials
+                key: FLYWAY_DATABASE_PASSWORD
+          - name: DATABASE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: interop-be-probing-api-aurora-user-credentials
+                key: DATABASE_USERNAME  
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: interop-be-probing-api-aurora-user-credentials
+                key: DATABASE_PASSWORD                                                                  
+        ports: 
+          - containerPort: 8080
+            name: http
+status: {}

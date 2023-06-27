@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: interop-be-probing-response-updater
+  name: interop-be-probing-response-updater
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interop-be-probing-response-updater
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: interop-be-probing-response-updater
+    spec:
+      serviceAccountName: interop-be-probing-response-updater
+      containers:
+      - image: ghcr.io/pagopa/interop-be-probing-response-updater:develop
+        name: interop-be-probing-response-updater
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        env:
+          - name: AWS_XRAY_DAEMON_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_XRAY_DAEMON_ADDRESS
+          - name: API_OPERATIONS_ESERVICE_BASEPATH
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: API_OPERATIONS_ESERVICE_BASEPATH
+          - name: API_OPERATIONS_PRODUCER_BASEPATH
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: API_OPERATIONS_PRODUCER_BASEPATH
+          - name: API_OPERATIONS_BASEURL
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: API_OPERATIONS_BASEURL
+          - name: SQS_ENDPOINT_POLL_RESULT_QUEUE
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-response-updater
+                key: SQS_ENDPOINT_POLL_RESULT_QUEUE
+          - name: INTEROP_PROBING_RESPONSE_UPDATER_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-response-updater
+                key: INTEROP_PROBING_RESPONSE_UPDATER_NAME                                                   
+        ports: 
+          - containerPort: 8080
+            name: http
+status: {}
