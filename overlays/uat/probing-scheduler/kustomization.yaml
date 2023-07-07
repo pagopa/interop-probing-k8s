@@ -4,7 +4,6 @@ namespace: uat
 resources:
 - ../../../base/configMap
 - ../../../base/deployment
-- ../../../base/hpa
 patches:
   - path: configMap.yaml
     target:
@@ -15,12 +14,6 @@ patches:
   - path: deployment.yaml
     target:
       kind: Deployment
-    options:
-      allowNameChange: true
-      allowKindChange: false
-  - path: hpa.yaml
-    target:
-      kind: HorizontalPodAutoscaler
     options:
       allowNameChange: true
       allowKindChange: false
