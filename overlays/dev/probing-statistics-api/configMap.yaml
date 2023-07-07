@@ -8,6 +8,7 @@ data:
   GRAPH_PERFORMANCE_TOLERANCE: "2" 
   GRAPH_FAILURE_PRECISION: "96"
   GRAPH_FAILURE_TOLERANCE: "4"
+  GRAPH_MAX_MONTHS: "3"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-statistics-api

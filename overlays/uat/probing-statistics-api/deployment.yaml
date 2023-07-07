@@ -34,6 +34,11 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-common
                 key: AWS_XRAY_DAEMON_ADDRESS
+          - name: GRAPH_MAX_MONTHS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-statistics-api
+                key: GRAPH_MAX_MONTHS
           - name: GRAPH_PERFORMANCE_PRECISION
             valueFrom:
               configMapKeyRef:
