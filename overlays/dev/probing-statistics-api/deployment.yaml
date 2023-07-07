@@ -74,4 +74,7 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-statistics-api
                 key: INTEROP_PROBING_STATISTICS_APP_NAME                                     
+        ports: 
+          - containerPort: 8080
+            name: http
 status: {}

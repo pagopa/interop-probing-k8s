@@ -57,7 +57,4 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-response-updater
                 key: INTEROP_PROBING_RESPONSE_UPDATER_NAME                                                   
-        ports: 
-          - containerPort: 8080
-            name: http
 status: {}
