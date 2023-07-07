@@ -94,7 +94,4 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-eservice-registry-caller
                 key: INTEROP_PROBING_CALLER_NAME                                                                    
-        ports: 
-          - containerPort: 8080
-            name: http
 status: {}
