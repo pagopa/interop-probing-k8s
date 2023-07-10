@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-api
       containers:
-      - image: ghcr.io/pagopa/interop-be-probing-api:develop
+      - image: ghcr.io/pagopa/interop-be-probing-api1.0.0-rc
         name: interop-be-probing-api
         resources:
           limits:
