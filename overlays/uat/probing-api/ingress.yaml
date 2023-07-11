@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: interop-be-probing-api
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: interop-probing-alb-uat
 spec:
   ingressClassName: alb
   rules:
