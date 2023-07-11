@@ -73,8 +73,8 @@ jobs:
     strategy:
       matrix:
         service: [common,probing-api,probing-caller,probing-eservice-operations,
-          probing-eservice-registry-reader,probing-eservice-registry-updater,
-          probing-scheduler,probing-telemetry-writer,probing-statistics-api]
+          probing-eservice-registry-reader,probing-eservice-registry-updater,,
+          probing-response-updater,probing-scheduler,probing-telemetry-writer,probing-statistics-api]
     name: "dev-deployment"
     runs-on: ubuntu-latest
     environment: dev
