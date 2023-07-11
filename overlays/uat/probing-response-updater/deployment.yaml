@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-response-updater
       containers:
-      - image: ghcr.io/pagopa/interop-be-probing-response-updater::1.0.0-rc
+      - image: ghcr.io/pagopa/interop-be-probing-response-updater:1.0.0-rc
         name: interop-be-probing-response-updater
         resources:
           limits:

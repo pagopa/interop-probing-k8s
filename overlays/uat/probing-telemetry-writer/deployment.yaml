@@ -19,7 +19,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-telemetry-writer
       containers:
-      - image: ghcr.io/pagopa/interop-be-probing-telemetry-writer::1.0.0-rc
+      - image: ghcr.io/pagopa/interop-be-probing-telemetry-writer:1.0.0-rc
         name: interop-be-probing-telemetry-writer
         resources:
           limits:
