@@ -19,7 +19,7 @@ spec:
           serviceAccountName: interop-be-probing-eservice-registry-updater
           containers:
             - name: interop-be-probing-eservice-registry-updater
-              image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater1.0.0-rc
+              image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater:1.0.0-rc
               imagePullPolicy: Always
               resources:
                 limits:
