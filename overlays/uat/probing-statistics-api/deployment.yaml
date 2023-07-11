@@ -19,7 +19,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-statistics-api
       containers:
-      - image: ghcr.io/pagopa/interop-be-probing-statistics-api:develop
+      - image: ghcr.io/pagopa/interop-be-probing-statistics-api1.0.0-rc
         name: interop-be-probing-statistics-api
         resources:
           limits:
@@ -79,7 +79,4 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-statistics-api
                 key: INTEROP_PROBING_STATISTICS_APP_NAME                                     
-        ports: 
-          - containerPort: 8080
-            name: http
 status: {}

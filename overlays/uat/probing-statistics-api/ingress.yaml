@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: interop-be-probing-statistics-api
   annotations:
-    alb.ingress.kubernetes.io/load-balancer-name: interop-probing-alb-dev
+    alb.ingress.kubernetes.io/load-balancer-name: interop-probing-alb-uat
 spec:
   ingressClassName: alb
   rules:

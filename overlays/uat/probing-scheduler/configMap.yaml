@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  SQS_ENDPOINT_POLL_QUEUE: "https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_polling_queue"
+  SCHEDULER_CRON_EXPRESSION: "0 * * * * *" 
+  SCHEDULER_LIMIT: "10"
+  THREADPOOL_MAX_POOL_SIZE: "7"
+  INTEROP_PROBING_SCHEDULER_NAME: "interop-be-probing-scheduler"
+kind: ConfigMap
+metadata:
+  name: interop-be-probing-scheduler
