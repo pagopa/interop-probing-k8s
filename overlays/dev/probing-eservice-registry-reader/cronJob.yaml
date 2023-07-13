@@ -5,7 +5,7 @@ metadata:
   labels:
     app: interop-be-probing-eservice-registry-reader
 spec:
-  schedule: "0 0 * * *"
+  schedule: "0 */6 * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
