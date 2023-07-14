@@ -5,12 +5,13 @@ metadata:
   labels:
     app: interop-be-probing-eservice-registry-updater
 spec:
-  schedule: "* * * * *"
+  schedule: "0 * * * *"
   successfulJobsHistoryLimit: 1
-  failedJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
+      backoffLimit: 3
       template:
         metadata:
           labels:
