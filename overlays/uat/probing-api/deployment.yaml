@@ -96,27 +96,7 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-api
-                key: INTEROP_PROBING_API_APP_NAME
-          - name: FLYWAY_DATABASE_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: interop-be-probing-aurora-flyway-user-credentials
-                key: FLYWAY_DATABASE_USERNAME                
-          - name: FLYWAY_DATABASE_PASSWORD 
-            valueFrom:
-              secretKeyRef:
-                name: interop-be-probing-aurora-flyway-user-credentials
-                key: FLYWAY_DATABASE_PASSWORD
-          - name: DATABASE_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: interop-be-probing-app-aurora-user-credentials
-                key: DATABASE_USERNAME  
-          - name: DATABASE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: interop-be-probing-app-aurora-user-credentials
-                key: DATABASE_PASSWORD                                                                  
+                key: INTEROP_PROBING_API_APP_NAME                                                                  
         ports: 
           - containerPort: 8080
             name: http
