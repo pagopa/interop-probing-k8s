@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   S3_BUCKET_KEY: eservices.json
-  S3_BUCKET_NAME: interop-probing-eservices-uat
+  S3_BUCKET_NAME: interop-probing-eservices-test
   SQS_ENDPOINT_SERVICES_QUEUE: https://sqs.eu-central-1.amazonaws.com/010158505074/eservice_registry_queue.fifo
 kind: ConfigMap
 metadata:
