@@ -18,6 +18,7 @@ spec:
             app: interop-be-probing-eservice-registry-updater
         spec:
           serviceAccountName: interop-be-probing-eservice-registry-updater
+          restartPolicy: Never
           containers:
             - name: interop-be-probing-eservice-registry-updater
               image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater:v1.0.0-rc
