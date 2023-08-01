@@ -18,9 +18,10 @@ spec:
             app: interop-be-probing-eservice-registry-updater
         spec:
           serviceAccountName: interop-be-probing-eservice-registry-updater
+          restartPolicy: Never
           containers:
             - name: interop-be-probing-eservice-registry-updater
-              image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater:v1.0.0-rc
+              image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater:v1.0.0-rc2
               imagePullPolicy: Always
               resources:
                 limits:
@@ -55,24 +56,8 @@ spec:
                     configMapKeyRef:
                       name: interop-be-probing-eservice-registry-updater
                       key: SQS_ENDPOINT_SERVICES_QUEUE
-                - name: JDBC_URL
-                  valueFrom:
-                    configMapKeyRef:
-                      name: interop-be-probing-eservice-registry-updater
-                      key: JDBC_URL
                 - name: PERSIST_UNIT_NAME
                   valueFrom:
                     configMapKeyRef:
                       name: interop-be-probing-eservice-registry-updater
-                      key: PERSIST_UNIT_NAME                   
-                - name: JDBC_USERNAME 
-                  valueFrom:
-                    secretKeyRef:
-                      name: interop-be-probing-eservice-registry-updater
-                      key: JDBC_USERNAME
-                - name: JDBC_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      name: interop-be-probing-eservice-registry-updater
-                      key: JDBC_PASSWORD  
-          restartPolicy: Never
+                      key: PERSIST_UNIT_NAME
