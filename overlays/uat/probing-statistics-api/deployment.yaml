@@ -19,7 +19,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-statistics-api
       containers:
-      - image: ghcr.io/pagopa/interop-be-probing-statistics-api:v1.0.0-rc5
+      - image: ghcr.io/pagopa/interop-be-probing-statistics-api:v1.0.0-rc6
         name: interop-be-probing-statistics-api
         resources:
           limits:
