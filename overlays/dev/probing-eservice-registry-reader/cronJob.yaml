@@ -35,6 +35,16 @@ spec:
                     configMapKeyRef:
                       name: interop-be-probing-common
                       key: AWS_XRAY_DAEMON_ADDRESS
+                - name: LOG_LEVEL
+                  valueFrom:
+                    configMapKeyRef:
+                      name: interop-be-probing-common
+                      key: LOG_LEVEL
+                - name: AWS_REGION
+                  valueFrom:
+                    configMapKeyRef:
+                      name: interop-be-probing-common
+                      key: AWS_REGION
                 - name: S3_BUCKET_NAME
                   valueFrom:
                     configMapKeyRef:

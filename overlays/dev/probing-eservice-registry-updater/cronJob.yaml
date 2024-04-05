@@ -36,16 +36,21 @@ spec:
                     configMapKeyRef:
                       name: interop-be-probing-common
                       key: AWS_XRAY_DAEMON_ADDRESS
-                - name: API_OPERATIONS_ESERVICE_BASEPATH
+                - name: LOG_LEVEL
                   valueFrom:
                     configMapKeyRef:
                       name: interop-be-probing-common
-                      key: API_OPERATIONS_ESERVICE_BASEPATH
-                - name: API_OPERATIONS_PRODUCER_BASEPATH
+                      key: LOG_LEVEL
+                - name: AWS_REGION
                   valueFrom:
                     configMapKeyRef:
                       name: interop-be-probing-common
-                      key: API_OPERATIONS_PRODUCER_BASEPATH
+                      key: AWS_REGION
+                - name: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: interop-be-probing-common
+                      key: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
                 - name: API_OPERATIONS_BASEURL
                   valueFrom:
                     configMapKeyRef:
@@ -56,8 +61,3 @@ spec:
                     configMapKeyRef:
                       name: interop-be-probing-eservice-registry-updater
                       key: SQS_ENDPOINT_SERVICES_QUEUE
-                - name: PERSIST_UNIT_NAME
-                  valueFrom:
-                    configMapKeyRef:
-                      name: interop-be-probing-eservice-registry-updater
-                      key: PERSIST_UNIT_NAME
