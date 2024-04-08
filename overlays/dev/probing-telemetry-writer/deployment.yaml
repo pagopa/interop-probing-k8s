@@ -34,6 +34,16 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-common
                 key: AWS_XRAY_DAEMON_ADDRESS
+          - name: LOG_LEVEL
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: LOG_LEVEL
+          - name: AWS_REGION
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_REGION
           - name: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
             valueFrom:
               configMapKeyRef:
@@ -54,16 +64,6 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-telemetry-writer
                 key: TIMESTREAM_RETRIES
-          - name: TIMESTREAM_MAX_CONNECTIONS
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-telemetry-writer
-                key: TIMESTREAM_MAX_CONNECTIONS  
-          - name: TIMESTREAM_ATTEMPT_TIMEOUT
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-telemetry-writer
-                key: TIMESTREAM_ATTEMPT_TIMEOUT
           - name: INTEROP_PROBING_TELEMETRY_WRITER_NAME
             valueFrom:
               configMapKeyRef:

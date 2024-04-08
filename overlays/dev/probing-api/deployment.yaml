@@ -17,107 +17,62 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-api
       containers:
-      - image: ghcr.io/pagopa/interop-be-probing-api:develop
-        name: interop-be-probing-api
-        resources:
-          limits:
-            cpu: 500m
-            memory: 512Mi
-          requests:
-            cpu: 500m
-            memory: 512Mi
-        env:
-          - name: AWS_XRAY_DAEMON_ADDRESS
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-common
-                key: AWS_XRAY_DAEMON_ADDRESS
-          - name: API_OPERATIONS_ESERVICE_BASEPATH
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-common
-                key: API_OPERATIONS_ESERVICE_BASEPATH
-          - name: API_OPERATIONS_PRODUCER_BASEPATH
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-common
-                key: API_OPERATIONS_PRODUCER_BASEPATH
-          - name: API_OPERATIONS_BASEURL
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-common
-                key: API_OPERATIONS_BASEURL
-          - name: VALIDATE_MIGRATION_NAMING
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: VALIDATE_MIGRATION_NAMING
-          - name: TOLERANCE_MULTIPLIER_IN_MINUTES
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: TOLERANCE_MULTIPLIER_IN_MINUTES
-          - name: DATABASE_URL
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: DATABASE_URL    
-          - name: DATABASE_DRIVER
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: DATABASE_DRIVER   
-          - name: DATABASE_PLATFORM
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: DATABASE_PLATFORM   
-          - name: DATABASE
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: DATABASE   
-          - name: JDBC_TIME_ZONE
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: JDBC_TIME_ZONE
-          - name: SCHEMA_NAME
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: SCHEMA_NAME
-          - name: CORS_ORIGIN_ALLOWED
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: CORS_ORIGIN_ALLOWED
-          - name: INTEROP_PROBING_API_APP_NAME
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-api
-                key: INTEROP_PROBING_API_APP_NAME
-          - name: FLYWAY_DATABASE_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: interop-be-probing-aurora-flyway-user-credentials
-                key: FLYWAY_DATABASE_USERNAME                
-          - name: FLYWAY_DATABASE_PASSWORD 
-            valueFrom:
-              secretKeyRef:
-                name: interop-be-probing-aurora-flyway-user-credentials
-                key: FLYWAY_DATABASE_PASSWORD
-          - name: DATABASE_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: interop-be-probing-app-aurora-user-credentials
-                key: DATABASE_USERNAME  
-          - name: DATABASE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: interop-be-probing-app-aurora-user-credentials
-                key: DATABASE_PASSWORD                                                                  
-        ports: 
-          - containerPort: 8080
-            name: http
+        - image: ghcr.io/pagopa/interop-be-probing-api:develop
+          name: interop-be-probing-api
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          env:
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-api
+                  key: HOST
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-api
+                  key: PORT
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-common
+                  key: LOG_LEVEL
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-common
+                  key: AWS_REGION
+            - name: API_OPERATIONS_BASEURL
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-common
+                  key: API_OPERATIONS_BASEURL
+            - name: AWS_XRAY_DAEMON_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-common
+                  key: AWS_XRAY_DAEMON_ADDRESS
+            - name: TOLERANCE_MULTIPLIER_IN_MINUTES
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-api
+                  key: TOLERANCE_MULTIPLIER_IN_MINUTES
+            - name: CORS_ORIGIN_ALLOWED
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-api
+                  key: CORS_ORIGIN_ALLOWED
+            - name: INTEROP_PROBING_API_APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-api
+                  key: INTEROP_PROBING_API_APP_NAME
+          ports:
+            - containerPort: 8080
+              name: http
 status: {}
