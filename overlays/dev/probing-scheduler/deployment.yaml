@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-scheduler
       containers:
-        - image: ghcr.io/pagopa/interop-be-probing-scheduler:develop
+        - image: ghcr.io/pagopa/interop-be-probing/interop-be-probing-scheduler:develop
           name: interop-be-probing-scheduler
           resources:
             limits:
