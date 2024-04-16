@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-operations
       containers:
-        - image: ghcr.io/pagopa/interop-be-probing-eservice-operations:develop
+        - image: ghcr.io/pagopa/interop-be-probing/interop-be-probing-eservice-operations:develop
           name: interop-be-probing-eservice-operations
           resources:
             limits:
