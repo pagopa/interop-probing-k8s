@@ -39,7 +39,7 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-statistics-api
                 key: HOST
-            - name: PORT
+          - name: PORT
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-statistics-api
