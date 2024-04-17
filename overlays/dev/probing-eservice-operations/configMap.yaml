@@ -2,8 +2,8 @@ apiVersion: v1
 data:
   HOST: "0.0.0.0"
   PORT: "8080"
-  DB_HOST: postgresql://interop-probing-operational-database-dev.cluster-caudw4yuwazj.eu-central-1.rds.amazonaws.com:5432/interop_probing_operational?currentSchema=interop_probing_operational
-  DB_NAME: POSTGRESQL
+  DB_HOST: interop-probing-operational-database-dev.cluster-caudw4yuwazj.eu-central-1.rds.amazonaws.com
+  DB_NAME: interop_probing_operational
   DB_PORT: "5432"
   SCHEMA_NAME: interop_probing_operational
   TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
