@@ -44,6 +44,11 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-statistics-api
                 key: PORT
+          - name: LOG_LEVEL
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: LOG_LEVEL
           - name: GRAPH_MAX_MONTHS
             valueFrom:
               configMapKeyRef:
