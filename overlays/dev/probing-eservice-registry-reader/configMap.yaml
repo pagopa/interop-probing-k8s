@@ -4,6 +4,7 @@ data:
   S3_BUCKET_NAME: interop-probing-eservices-dev
   SQS_ENDPOINT_SERVICES_QUEUE: https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_registry_queue.fifo
   INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME: "interop-be-probing-eservice-registry-reader"
+  SQS_GROUP_ID: "eservice_registry_reader"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-eservice-registry-reader
