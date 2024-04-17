@@ -65,4 +65,9 @@ spec:
                     configMapKeyRef:
                       name: interop-be-probing-eservice-registry-reader
                       key: INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME
+                - name: SQS_GROUP_ID
+                  valueFrom:
+                    configMapKeyRef:
+                      name: interop-be-probing-eservice-registry-reader
+                      key: SQS_GROUP_ID
           restartPolicy: Never
