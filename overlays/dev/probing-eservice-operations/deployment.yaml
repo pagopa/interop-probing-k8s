@@ -101,12 +101,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: interop-be-probing-app-aurora-user-credentials
-                  key: DB_USERNAME
+                  key: DATABASE_USERNAME
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: interop-be-probing-app-aurora-user-credentials
-                  key: DB_PASSWORD
+                  key: DATABASE_PASSWORD
           ports:
             - containerPort: 8080
               name: http
