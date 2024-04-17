@@ -60,4 +60,9 @@ spec:
                     configMapKeyRef:
                       name: interop-be-probing-eservice-registry-reader
                       key: SQS_ENDPOINT_SERVICES_QUEUE
+                - name: INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: interop-be-probing-eservice-registry-reader
+                      key: INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME
           restartPolicy: Never
