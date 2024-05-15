@@ -7,6 +7,7 @@ data:
   DB_PORT: "5432"
   SCHEMA_NAME: interop_probing_operational
   TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
+  POLLING_FREQUENCY_THRESHOLD: "3"
   CORS_ORIGIN_ALLOWED: "*"
   INTEROP_PROBING_OPERATIONS_APP_NAME: "Interop-be-probing-eservice-operations"
 kind: ConfigMap

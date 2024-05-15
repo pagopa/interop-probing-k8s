@@ -82,6 +82,11 @@ spec:
                 configMapKeyRef:
                   name: interop-be-probing-eservice-operations
                   key: TOLERANCE_MULTIPLIER_IN_MINUTES
+            - name: POLLING_FREQUENCY_THRESHOLD
+              valueFrom:
+                configMapKeyRef:
+                  name: interop-be-probing-eservice-operations
+                  key: POLLING_FREQUENCY_THRESHOLD
             - name: INTEROP_PROBING_OPERATIONS_APP_NAME
               valueFrom:
                 configMapKeyRef:
