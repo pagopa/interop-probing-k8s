@@ -20,7 +20,7 @@ spec:
           serviceAccountName: interop-be-probing-eservice-registry-reader          
           containers:
             - name: interop-be-probing-eservice-registry-reader
-              image: ghcr.io/pagopa/interop-be-probing-eservice-registry-reader:v1.0.0-rc3
+              image: ghcr.io/pagopa/interop-be-probing/interop-be-probing-eservice-registry-reader:2.0.0-rc1
               imagePullPolicy: Always
               resources:
                 limits:
@@ -30,11 +30,16 @@ spec:
                   cpu: 500m
                   memory: 512Mi
               env:
-                - name: AWS_XRAY_DAEMON_ADDRESS
+                - name: LOG_LEVEL
                   valueFrom:
                     configMapKeyRef:
                       name: interop-be-probing-common
-                      key: AWS_XRAY_DAEMON_ADDRESS
+                      key: LOG_LEVEL
+                - name: AWS_REGION
+                  valueFrom:
+                    configMapKeyRef:
+                      name: interop-be-probing-common
+                      key: AWS_REGION
                 - name: S3_BUCKET_NAME
                   valueFrom:
                     configMapKeyRef:
@@ -50,4 +55,14 @@ spec:
                     configMapKeyRef:
                       name: interop-be-probing-eservice-registry-reader
                       key: SQS_ENDPOINT_SERVICES_QUEUE
+                - name: INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: interop-be-probing-eservice-registry-reader
+                      key: INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME
+                - name: SQS_GROUP_ID
+                  valueFrom:
+                    configMapKeyRef:
+                      name: interop-be-probing-eservice-registry-reader
+                      key: SQS_GROUP_ID
           restartPolicy: Never

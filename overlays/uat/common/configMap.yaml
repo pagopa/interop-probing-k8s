@@ -1,9 +1,9 @@
 apiVersion: v1
 data:
   API_OPERATIONS_BASEURL: http://interop-be-probing-eservice-operations.uat.svc.cluster.local/
-  API_OPERATIONS_ESERVICE_BASEPATH: eservices
-  API_OPERATIONS_PRODUCER_BASEPATH: producers
-  AWS_XRAY_DAEMON_ADDRESS: "tcp:xray-daemon.aws-observability.svc.cluster.local:2000 udp:xray-daemon.aws-observability.svc.cluster.local:2001"
+  AWS_REGION: "eu-central-1"
+  LOG_LEVEL: info
+  CONSUMER_POLLING_TIMEOUT_IN_SECONDS: "3"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-common

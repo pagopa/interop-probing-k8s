@@ -21,7 +21,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: interop-be-probing-eservice-registry-updater
-              image: ghcr.io/pagopa/interop-be-probing-eservice-registry-updater:v1.0.0-rc3
+              image: ghcr.io/pagopa/interop-be-probing/interop-be-probing-eservice-registry-updater:2.0.0-rc1
               imagePullPolicy: Always
               resources:
                 limits:
@@ -31,21 +31,21 @@ spec:
                   cpu: 500m
                   memory: 512Mi
               env:
-                - name: AWS_XRAY_DAEMON_ADDRESS
+                - name: LOG_LEVEL
                   valueFrom:
                     configMapKeyRef:
                       name: interop-be-probing-common
-                      key: AWS_XRAY_DAEMON_ADDRESS
-                - name: API_OPERATIONS_ESERVICE_BASEPATH
+                      key: LOG_LEVEL
+                - name: AWS_REGION
                   valueFrom:
                     configMapKeyRef:
                       name: interop-be-probing-common
-                      key: API_OPERATIONS_ESERVICE_BASEPATH
-                - name: API_OPERATIONS_PRODUCER_BASEPATH
+                      key: AWS_REGION
+                - name: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
                   valueFrom:
                     configMapKeyRef:
                       name: interop-be-probing-common
-                      key: API_OPERATIONS_PRODUCER_BASEPATH
+                      key: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
                 - name: API_OPERATIONS_BASEURL
                   valueFrom:
                     configMapKeyRef:
@@ -56,8 +56,8 @@ spec:
                     configMapKeyRef:
                       name: interop-be-probing-eservice-registry-updater
                       key: SQS_ENDPOINT_SERVICES_QUEUE
-                - name: PERSIST_UNIT_NAME
+                - name: INTEROP_PROBING_ESERVICE_REGISTRY_UPDATER_NAME
                   valueFrom:
                     configMapKeyRef:
                       name: interop-be-probing-eservice-registry-updater
-                      key: PERSIST_UNIT_NAME
+                      key: INTEROP_PROBING_ESERVICE_REGISTRY_UPDATER_NAME
