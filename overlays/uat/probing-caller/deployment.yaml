@@ -19,7 +19,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-caller
       containers:
-        - image: ghcr.io/pagopa/interop-be-probing/interop-be-probing-caller:2.0.0-rc1
+        - image: ghcr.io/pagopa/interop-probing-core/interop-be-probing-caller:2.0.0-rc1
           name: interop-be-probing-eservice-registry-caller
           resources:
             limits:
