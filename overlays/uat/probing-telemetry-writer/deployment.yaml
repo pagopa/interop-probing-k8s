@@ -19,7 +19,7 @@ spec:
     spec:
       serviceAccountName: interop-be-probing-telemetry-writer
       containers:
-      - image: ghcr.io/pagopa/interop-be-probing-telemetry-writer:v1.0.0-rc
+      - image: ghcr.io/pagopa/interop-be-probing/interop-be-probing-telemetry-writer:2.0.0-rc1
         name: interop-be-probing-telemetry-writer
         resources:
           limits:
@@ -29,11 +29,21 @@ spec:
             cpu: 500m
             memory: 512Mi
         env:
-          - name: AWS_XRAY_DAEMON_ADDRESS
+          - name: LOG_LEVEL
             valueFrom:
               configMapKeyRef:
                 name: interop-be-probing-common
-                key: AWS_XRAY_DAEMON_ADDRESS
+                key: LOG_LEVEL
+          - name: AWS_REGION
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: AWS_REGION
+          - name: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
+            valueFrom:
+              configMapKeyRef:
+                name: interop-be-probing-common
+                key: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
           - name: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
             valueFrom:
               configMapKeyRef:
@@ -54,16 +64,6 @@ spec:
               configMapKeyRef:
                 name: interop-be-probing-telemetry-writer
                 key: TIMESTREAM_RETRIES
-          - name: TIMESTREAM_MAX_CONNECTIONS
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-telemetry-writer
-                key: TIMESTREAM_MAX_CONNECTIONS  
-          - name: TIMESTREAM_ATTEMPT_TIMEOUT
-            valueFrom:
-              configMapKeyRef:
-                name: interop-be-probing-telemetry-writer
-                key: TIMESTREAM_ATTEMPT_TIMEOUT
           - name: INTEROP_PROBING_TELEMETRY_WRITER_NAME
             valueFrom:
               configMapKeyRef:

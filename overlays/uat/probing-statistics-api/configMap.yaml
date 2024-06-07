@@ -1,14 +1,14 @@
 apiVersion: v1
 data:
-  TIMESTREAM_DATABASE: "interop_probing_telemetry" 
+  TIMESTREAM_DATABASE: "interop_probing_telemetry"
   TIMESTREAM_TABLE: "probing_telemetry"
   CORS_ORIGIN_ALLOWED: "*"
-  INTEROP_PROBING_STATISTICS_APP_NAME: "Interop-be-probing-statistics-api"
-  GRAPH_PERFORMANCE_PRECISION: "24"
-  GRAPH_PERFORMANCE_TOLERANCE: "2" 
-  GRAPH_FAILURE_PRECISION: "96"
+  INTEROP_PROBING_STATISTICS_APP_NAME: "interop-be-probing-statistics-api"
+  GRAPH_PERFORMANCE_TOLERANCE: "2"
   GRAPH_FAILURE_TOLERANCE: "4"
   GRAPH_MAX_MONTHS: "3"
+  HOST: "0.0.0.0"
+  PORT: "8080"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-statistics-api

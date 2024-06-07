@@ -4,9 +4,7 @@ data:
   TIMESTREAM_DATABASE: "interop_probing_telemetry" 
   TIMESTREAM_TABLE: "probing_telemetry"
   TIMESTREAM_RETRIES: "10"
-  TIMESTREAM_MAX_CONNECTIONS: "5000"
-  TIMESTREAM_ATTEMPT_TIMEOUT: "20"
-  INTEROP_PROBING_TELEMETRY_WRITER_NAME: "Interop-be-probing-telemetry-writer"
+  INTEROP_PROBING_TELEMETRY_WRITER_NAME: "interop-be-probing-telemetry-writer"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-telemetry-writer

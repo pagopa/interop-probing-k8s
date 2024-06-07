@@ -1,15 +1,15 @@
 apiVersion: v1
 data:
-  DATABASE_URL: jdbc:postgresql://interop-probing-operational-database-uat.cluster-cyhshel7tys6.eu-central-1.rds.amazonaws.com/interop_probing_operational?currentSchema=interop_probing_operational
-  DATABASE_DRIVER: org.postgresql.Driver
-  DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQL95Dialect
-  DATABASE: POSTGRESQL
-  JDBC_TIME_ZONE: UTC
-  VALIDATE_MIGRATION_NAMING: "true"
+  HOST: "0.0.0.0"
+  PORT: "8080"
+  DB_HOST: interop-probing-operational-database-uat.cluster-cyhshel7tys6.eu-central-1.rds.amazonaws.com
+  DB_NAME: interop_probing_operational
+  DB_PORT: "5432"
   SCHEMA_NAME: interop_probing_operational
   TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
+  POLLING_FREQUENCY_THRESHOLD: "3"
   CORS_ORIGIN_ALLOWED: "*"
-  INTEROP_PROBING_OPERATIONS_APP_NAME: "Interop-be-probing-eservice-operations"
+  INTEROP_PROBING_OPERATIONS_APP_NAME: "interop-be-probing-eservice-operations"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-eservice-operations

@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   SQS_ENDPOINT_SERVICES_QUEUE: https://sqs.eu-central-1.amazonaws.com/010158505074/eservice_registry_queue.fifo
-  PERSIST_UNIT_NAME: interop-db-pu
+  INTEROP_PROBING_ESERVICE_REGISTRY_UPDATER_NAME: "interop-be-probing-eservice-registry-updater-test"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-eservice-registry-updater

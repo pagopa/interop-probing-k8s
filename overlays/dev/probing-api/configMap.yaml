@@ -4,7 +4,7 @@ data:
   PORT: "8080"
   CORS_ORIGIN_ALLOWED: "*"
   TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
-  INTEROP_PROBING_API_APP_NAME: "Interop-be-probing-api"
+  INTEROP_PROBING_API_APP_NAME: "interop-be-probing-api"
 kind: ConfigMap
 metadata:
   name: interop-be-probing-api
