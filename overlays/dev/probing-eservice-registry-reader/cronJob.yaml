@@ -20,7 +20,7 @@ spec:
           serviceAccountName: interop-be-probing-eservice-registry-reader          
           containers:
             - name: interop-be-probing-eservice-registry-reader
-              image: ghcr.io/pagopa/interop-be-probing/interop-be-probing-eservice-registry-reader:develop
+              image: ghcr.io/pagopa/interop-probing-core/interop-be-probing-eservice-registry-reader:develop
               imagePullPolicy: Always
               resources:
                 limits:
