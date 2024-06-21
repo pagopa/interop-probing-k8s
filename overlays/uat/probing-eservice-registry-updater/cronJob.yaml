@@ -21,7 +21,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: interop-be-probing-eservice-registry-updater
-              image: ghcr.io/pagopa/interop-probing-core/interop-be-probing-eservice-registry-updater:2.0.0-rc1
+              image: ghcr.io/pagopa/interop-probing-core/interop-be-probing-eservice-registry-updater:2.0.0-rc2
               imagePullPolicy: Always
               resources:
                 limits:
