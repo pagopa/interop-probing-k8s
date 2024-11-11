@@ -5,9 +5,9 @@ resources:
 - ./probing-api
 - ./probing-caller
 - ./probing-eservice-operations
-- ./probing-eservice-registry-reader
-- ./probing-eservice-registry-updater
 - ./probing-eservice-response-updater
 - ./probing-scheduler
 - ./probing-statistics-api
 - ./probing-telemetry-writer
+- ./probing-eservice-event-consumer
+- ./probing-tenant-event-consumer
