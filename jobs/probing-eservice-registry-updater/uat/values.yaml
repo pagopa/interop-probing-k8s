@@ -1,0 +1,18 @@
+name: probing-eservice-registry-updater
+schedule: "0 * * * *"
+concurrencyPolicy: Forbid
+activeDeadlineSeconds: 3600
+successfulJobsHistoryLimit: 0
+failedJobsHistoryLimit: 1
+suspend: false
+restartPolicy: OnFailure
+
+configmap:
+  INTEROP_PROBING_ESERVICE_REGISTRY_UPDATER_NAME: "interop-be-probing-eservice-registry-updater"
+
+job:
+  env:
+    LOG_LEVEL: INFO
+  envFromConfigmaps:
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+ 

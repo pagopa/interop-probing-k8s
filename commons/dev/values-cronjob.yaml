@@ -1,0 +1,16 @@
+namespace: "dev"
+replicas: 1
+
+image:
+  repositoryPrefix: "ghcr.io/pagopa/interop-probing-core/interop-be-probing-api"
+  imagePullPolicy: Always
+  tag: $IMAGE_TAG_PLACEHOLDER
+  digest: $IMAGE_DIGEST_PLACEHOLDER
+
+resources:
+  requests:
+    cpu: "1"
+    memory: "2Gi"
+  limits:
+    cpu: "1"
+    memory: "2Gi"

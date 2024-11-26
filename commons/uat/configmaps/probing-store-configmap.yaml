@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: common-probing-store
+  namespace: uat
+data:
+  DB_HOST: interop-probing-operational-database-uat.cluster-cyhshel7tys6.eu-central-1.rds.amazonaws.com
+  DB_NAME: interop_probing_operational
+  DB_PORT: "5432"
+  

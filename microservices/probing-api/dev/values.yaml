@@ -1,0 +1,37 @@
+name: "interop-be-probing-api"
+
+serviceAccount:
+  roleArn: ""
+
+service:
+  create: true
+  portName: http
+  containerPort: 8080
+
+configMap:
+  CORS_ORIGIN_ALLOWED: "*"
+  TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
+  INTEROP_PROBING_API_APP_NAME: "interop-be-probing-api"
+
+deployment:
+  env:
+    HOST: "0.0.0.0"
+    PORT: "8080"
+  envFromConfigmaps:
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+    API_OPERATIONS_BASEURL: "interop-be-probing-common.API_OPERATIONS_BASEURL"
+    CORS_ORIGIN_ALLOWED: "interop-be-probing-api.CORS_ORIGIN_ALLOWED"
+    TOLERANCE_MULTIPLIER_IN_MINUTES: "interop-be-probing-api.TOLERANCE_MULTIPLIER_IN_MINUTES"
+
+autoscaling:
+    horizontal:
+      create: true 
+      config:
+        minReplicas: 1
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 80
+
+ingress:
+	create: true
+	groupName: "interop-be-probing"
+	applicationPath: /eservices

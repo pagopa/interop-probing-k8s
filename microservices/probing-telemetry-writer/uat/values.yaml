@@ -1,0 +1,28 @@
+name: "interop-be-probing-telemetry-writer"
+
+serviceAccount:
+  roleArn: ""
+
+service:
+  create: false
+
+configMap:
+  SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE: "https://sqs.eu-central-1.amazonaws.com/010158505074/eservice_telemetry_result_queue"
+  TIMESTREAM_DATABASE: "interop_probing_telemetry"
+  TIMESTREAM_TABLE: "probing_telemetry"
+  TIMESTREAM_RETRIES: "10"
+  INTEROP_PROBING_TELEMETRY_WRITER_NAME: "interop-be-probing-telemetry-writer"
+
+deployment:
+  envFromConfigmaps:
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+    CONSUMER_POLLING_TIMEOUT_IN_SECONDS: "interop-be-probing-common.CONSUMER_POLLING_TIMEOUT_IN_SECONDS" 
+    SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE: "interop-be-probing-telemetry-writer.SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE" 
+
+autoscaling:
+    horizontal:
+      create: true 
+      config:
+        minReplicas: 1
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 80

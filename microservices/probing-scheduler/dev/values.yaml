@@ -1,0 +1,24 @@
+name: "interop-be-probing-scheduler"
+
+serviceAccount:
+  roleArn: ""
+
+service:
+  create: false
+
+configMap:
+  SQS_ENDPOINT_POLL_QUEUE: "https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_polling_queue"
+  SCHEDULER_CRON_EXPRESSION: "0 * * * * *"
+  SCHEDULER_LIMIT: "10"
+  THREADPOOL_MAX_POOL_SIZE: "7"
+  INTEROP_PROBING_SCHEDULER_NAME: "interop-be-probing-scheduler"
+
+deployment:
+  envFromConfigmaps:
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+    API_OPERATIONS_BASEURL: "interop-be-probing-common.API_OPERATIONS_BASEURL"
+    SQS_ENDPOINT_POLL_QUEUE: "interop-be-probing-scheduler.SQS_ENDPOINT_POLL_QUEUE"
+    SCHEDULER_LIMIT: "interop-be-probing-scheduler.SCHEDULER_LIMIT"
+  
+
+

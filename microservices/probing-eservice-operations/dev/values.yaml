@@ -1,0 +1,42 @@
+name: "interop-be-probing-eservice-operations"
+
+serviceAccount:
+  roleArn: ""
+
+service:
+  create: true
+  portName: http
+  containerPort: 8080
+
+configMap:
+  SCHEMA_NAME: "interop_probing_operational"
+  TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
+  POLLING_FREQUENCY_THRESHOLD: "3"
+  CORS_ORIGIN_ALLOWED: "*"
+  INTEROP_PROBING_OPERATIONS_APP_NAME: "interop-be-probing-eservice-operations"
+
+deployment:
+  env:
+    HOST: "0.0.0.0"
+    PORT: "8080"
+  envFromConfigmaps:
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+    SH_DB_HOST: "common-probing-store.DB_HOST"
+    SH_DB_NAME: "common-probing-store.DB_NAME"  
+    SH_DB_PORT: "common-probing-store.DB_PORT" 
+    SCHEMA_NAME: "interop-be-probing-eservice-operations.SCHEMA_NAME"  
+    TOLERANCE_MULTIPLIER_IN_MINUTES: "interop-be-probing-eservice-operations.TOLERANCE_MULTIPLIER_IN_MINUTES"
+    POLLING_FREQUENCY_THRESHOLD: "interop-be-probing-eservice-operations.POLLING_FREQUENCY_THRESHOLD"  
+    CORS_ORIGIN_ALLOWED: "interop-be-probing-eservice-operations.CORS_ORIGIN_ALLOWED"
+  envFromSecrets:
+    SH_DB_USERNAME: "interop-be-probing-aurora-flyway-user-credentials.FLYWAY_DATABASE_USERNAME"
+    SH_DB_PASSWORD: "interop-be-probing-aurora-flyway-user-credentials.FLYWAY_DATABASE_PASSWORD"
+
+autoscaling:
+    horizontal:
+      create: true 
+      config:
+        minReplicas: 1
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 80
+

@@ -1,0 +1,39 @@
+name: "interop-be-probing-statistics-api"
+
+serviceAccount:
+  roleArn: ""
+
+service:
+  create: true
+  portName: http
+  containerPort: 8080
+
+configMap:
+  TIMESTREAM_DATABASE: "interop_probing_telemetry"
+  TIMESTREAM_TABLE: "probing_telemetry"
+  CORS_ORIGIN_ALLOWED: "*"
+  INTEROP_PROBING_STATISTICS_APP_NAME: "interop-be-probing-statistics-api"
+  GRAPH_PERFORMANCE_TOLERANCE: "2"
+  GRAPH_FAILURE_TOLERANCE: "4"
+  GRAPH_MAX_MONTHS: "3"
+
+deployment:
+  env:
+    HOST: "0.0.0.0"
+    PORT: "8080"
+  envFromConfigmaps:
+    GRAPH_MAX_MONTHS: "interop-be-probing-statistics-api.GRAPH_MAX_MONTHS"
+    GRAPH_PERFORMANCE_TOLERANCE: "interop-be-probing-statistics-api.GRAPH_PERFORMANCE_TOLERANCE"
+
+autoscaling:
+    horizontal:
+      create: true 
+      config:
+        minReplicas: 1
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 80
+
+ingress:
+	create: true
+	groupName: "interop-be-probing"
+	applicationPath: /telemetryData

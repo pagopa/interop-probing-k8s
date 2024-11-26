@@ -1,0 +1,24 @@
+name: probing-eservice-registry-reader
+schedule: "0 */6 * * *"
+concurrencyPolicy: Forbid
+activeDeadlineSeconds: 3600
+successfulJobsHistoryLimit: 0
+failedJobsHistoryLimit: 1
+suspend: false
+restartPolicy: OnFailure
+
+configmap:
+  S3_BUCKET_NAME: "interop-probing-eservices-dev"
+  S3_BUCKET_KEY: "eservices.json"
+  SQS_GROUP_ID: "eservice_registry_reader"
+  INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME: "interop-be-probing-eservice-registry-reader"
+
+job:
+  env:
+    LOG_LEVEL: INFO
+  envFromConfigmaps:
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+    S3_BUCKET_NAME: "interop-be-probing-eservice-registry-reader.S3_BUCKET_NAME"
+    S3_BUCKET_KEY: "interop-be-probing-eservice-registry-reader.S3_BUCKET_KEY"
+    SQS_GROUP_ID: "interop-be-probing-eservice-registry-reader.SQS_GROUP_ID"
+ 
